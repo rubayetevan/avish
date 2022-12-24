@@ -13,7 +13,23 @@ async function registerUser(data) {
 
     try {
         const data = await dataToSave.save();
-        return data;
+
+        const { password, ...others } = data._doc;
+        return {...others};
+    }
+    catch (error) {
+        return { errors: [error] };
+    }
+}
+
+async function updateUser(data) {
+    try {
+        const updatedUser = await User.findByIdAndUpdate(data._id,{
+            $set:data
+        },{new:true});
+
+        const { password, ...others } = updatedUser._doc;
+        return {...others};
     }
     catch (error) {
         return { errors: [error] };
@@ -21,7 +37,6 @@ async function registerUser(data) {
 }
 
 
-
 module.exports = {
-    registerUser
+    registerUser,updateUser
 }
