@@ -16,7 +16,7 @@ async function registerUser(data) {
         return data;
     }
     catch (error) {
-        return { errorMessage: error.message };
+        return { errors: [error] };
     }
 }
 

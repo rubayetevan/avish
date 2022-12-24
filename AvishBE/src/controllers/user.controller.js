@@ -21,7 +21,7 @@ const userService = require('../services/user.service')
 async function registerUser(req, res, next) {
   try {
     const result = await userService.registerUser(req.body);
-    if("errorMessage" in result){
+    if("errors" in result){
       res.status(409).json(result);
     }else{
       res.status(201).json(result);
