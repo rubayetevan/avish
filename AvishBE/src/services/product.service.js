@@ -22,13 +22,17 @@ async function insertProductToDb(data) {
 
 }
 
-async function getAllProductFromDb() {
+async function getAllProductFromDb(data) {
+
+    const pageNum = data.page || 1;
+    const itemsPerPage = 10;
+    
     try {
-        const data = await Product.find();
+        const data = await Product.find().limit(itemsPerPage).skip(itemsPerPage * (pageNum-1));
         return data;
     }
     catch (error) {
-        return { message: error.message };
+        return { errors: [error] };
     }
 }
 

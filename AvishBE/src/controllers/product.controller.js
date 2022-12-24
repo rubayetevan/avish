@@ -3,7 +3,7 @@ const productService = require('../services/product.service')
 
 async function getAllProducts(req, res, next) {
   try {
-    res.json(await productService.getAllProductFromDb());
+    res.json(await productService.getAllProductFromDb(req.params));
   } catch (err) {
     console.error(`Error while getting programming languages`, err.message);
     next(err);

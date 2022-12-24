@@ -8,8 +8,9 @@ const productSchema = new mongoose.Schema({
         unique: true
     },
     quantity: {
-        required: true,
-        type: Number
+        required: false,
+        type: Number,
+        default:0
     },
     price: {
         required: true,
