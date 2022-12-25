@@ -1,6 +1,5 @@
 *.iml
 .gradle
-/.idea
 /local.properties
 /.idea/caches
 /.idea/libraries
@@ -15,31 +14,12 @@
 .cxx
 local.properties
 
-# Gradle files
-.gradle/
-build/
-
-# Local configuration file (sdk path, etc)
-
-
-# Log/OS Files
-*.log
-
-# Android Studio generated files and folders
-captures/
-.externalNativeBuild/
-.cxx/
-*.apk
-output.json
-
-# IntelliJ
-
-.idea/
+.idea
 misc.xml
 deploymentTargetDropDown.xml
 render.experimental.xml
 
-# Keystore files
+
 *.jks
 *.keystore
 
@@ -48,3 +28,16 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+output.json
+
+.gradle/
+build/
+
+
+# Log/OS Files
+*.log
