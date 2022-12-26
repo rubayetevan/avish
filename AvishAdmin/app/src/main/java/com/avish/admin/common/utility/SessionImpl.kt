@@ -2,9 +2,12 @@ package com.avish.admin.common.utility
 
 import android.content.Context
 import com.avish.admin.models.SessionData
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
+import javax.inject.Singleton
 
-
-class AvishSessionManager(context: Context) : SessionManager<SessionData>(context) {
+@Singleton
+class SessionImpl @Inject constructor(@ApplicationContext appContext: Context) : SessionBaseImpl<SessionData>(appContext) {
 
     private val keyEmail = "email"
     private val keyUsername = "userName"
