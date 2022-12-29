@@ -1,9 +1,10 @@
 package com.avish.admin
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
-import com.avish.admin.common.utility.Session
+import com.avish.admin.common.utility.session.Session
 import com.avish.admin.databinding.ActivityMainBinding
 import com.avish.admin.models.SessionData
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,10 +23,12 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        Log.d("SessionData",session.getSessionData().toString())
+
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.login_nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
-        val destination = if (!session.isLoggedIn()) R.id.homeFragment else R.id.loginFragment
+        val destination = if (session.isLoggedIn()) R.id.homeFragment else R.id.loginFragment
         val graphInflater = navController.navInflater
         val navGraph = graphInflater.inflate(R.navigation.login_nav_graph)
         navGraph.setStartDestination(destination)

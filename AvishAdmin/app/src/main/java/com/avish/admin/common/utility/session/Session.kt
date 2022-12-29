@@ -1,4 +1,4 @@
-package com.avish.admin.common.utility
+package com.avish.admin.common.utility.session
 
 interface Session<T> {
 

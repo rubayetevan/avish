@@ -1,11 +1,11 @@
-package com.avish.admin.common.utility
+package com.avish.admin.common.utility.session
 
 import android.content.Context
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 import com.avish.admin.BuildConfig
 
-abstract class  SessionBaseImpl <T> (context: Context):Session<T> {
+abstract class  SessionBaseImpl <T> (context: Context): Session<T> {
 
     private val keyIsLoggedIn: String = "isLoggedIn"
 
