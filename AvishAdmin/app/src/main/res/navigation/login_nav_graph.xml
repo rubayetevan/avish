@@ -14,9 +14,4 @@
         android:name="com.avish.admin.views.home.HomeFragment"
         android:label="Home">
     </fragment>
-    <fragment
-        android:id="@+id/productListFragment"
-        android:name="com.avish.admin.views.product.ProductList"
-        android:label="Products">
-    </fragment>
 </navigation>

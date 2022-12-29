@@ -23,11 +23,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.activity_main_nav_host_fragment) as NavHostFragment
+            supportFragmentManager.findFragmentById(R.id.login_nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
-        val destination = if (session.isLoggedIn()) R.id.homeFragment else R.id.loginFragment
+        val destination = if (!session.isLoggedIn()) R.id.homeFragment else R.id.loginFragment
         val graphInflater = navController.navInflater
-        val navGraph = graphInflater.inflate(R.navigation.nav_graph)
+        val navGraph = graphInflater.inflate(R.navigation.login_nav_graph)
         navGraph.setStartDestination(destination)
         navController.graph = navGraph
 
