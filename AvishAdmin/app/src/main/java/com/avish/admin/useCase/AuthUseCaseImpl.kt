@@ -5,14 +5,15 @@ import com.avish.admin.common.utility.session.Session
 import com.avish.admin.models.SessionData
 import com.avish.admin.repository.Repository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 import kotlinx.coroutines.flow.transform
 import javax.inject.Inject
 
-class LoginUseCaseImpl @Inject constructor(
+class AuthUseCaseImpl @Inject constructor(
     private val repository: Repository,
     private val session: Session<SessionData>
-) : LoginUseCase {
+) : AuthUseCase {
     override suspend fun doLoginAndCreateSession(
         userName: String,
         password: String
@@ -31,4 +32,12 @@ class LoginUseCaseImpl @Inject constructor(
             is Resource.Empty -> emit(Resource.Empty())
         }
     }
+
+    override suspend fun isUserLoggedIn(): Flow<Resource<Boolean>> = flow {
+        emit(Resource.Loading())
+        val  isUserLoggedIn = session.isLoggedIn()
+        emit(Resource.Success(isUserLoggedIn))
+    }
+
+
 }

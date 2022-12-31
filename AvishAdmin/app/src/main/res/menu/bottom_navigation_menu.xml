@@ -14,4 +14,8 @@
         android:id="@id/userFragment"
         android:icon="@drawable/ic_baseline_supervised_user_circle_24"
         android:title="Users"/>
+    <item
+        android:id="@id/meFragment"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="Me"/>
 </menu>

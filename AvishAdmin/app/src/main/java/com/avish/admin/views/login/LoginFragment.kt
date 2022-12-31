@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.avish.admin.databinding.FragmentLoginBinding
-import com.avish.admin.viewModel.LoginViewModel
+import com.avish.admin.viewModel.AuthViewModel
 import kotlinx.coroutines.launch
 
 
@@ -17,7 +17,7 @@ class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
-    private val loginViewModel: LoginViewModel by activityViewModels()
+    private val authViewModel: AuthViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,7 +33,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launch {
-            loginViewModel.doLogin().collect { loginState ->
+            authViewModel.doLogin().collect { loginState ->
                 Log.d("loginState","${loginState.toString()} ${loginState.data} ${loginState.message}")
             }
         }

@@ -19,4 +19,9 @@
         android:name="com.avish.admin.views.user.UserFragment"
         android:label="Users">
     </fragment>
+    <fragment
+        android:id="@+id/meFragment"
+        android:name="com.avish.admin.views.me.MeFragment"
+        android:label="Me">
+    </fragment>
 </navigation>
