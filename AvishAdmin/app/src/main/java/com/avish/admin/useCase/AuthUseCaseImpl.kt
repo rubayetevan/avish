@@ -35,7 +35,7 @@ class AuthUseCaseImpl @Inject constructor(
 
     override suspend fun isUserLoggedIn(): Flow<Resource<Boolean>> = flow {
         emit(Resource.Loading())
-        val  isUserLoggedIn = session.isLoggedIn()
+        val isUserLoggedIn = session.isLoggedIn()
         emit(Resource.Success(isUserLoggedIn))
     }
 

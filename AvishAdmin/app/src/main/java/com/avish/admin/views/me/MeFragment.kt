@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.avish.admin.databinding.FragmentMeBinding
-import com.avish.admin.databinding.FragmentOrderListBinding
 
 class MeFragment : Fragment() {
 

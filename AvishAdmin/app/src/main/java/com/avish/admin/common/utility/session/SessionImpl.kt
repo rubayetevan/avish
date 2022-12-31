@@ -7,7 +7,8 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class SessionImpl @Inject constructor(@ApplicationContext appContext: Context) : SessionBaseImpl<SessionData>(appContext) {
+class SessionImpl @Inject constructor(@ApplicationContext appContext: Context) :
+    SessionBaseImpl<SessionData>(appContext) {
 
     private val keyEmail = "email"
     private val keyUsername = "userName"

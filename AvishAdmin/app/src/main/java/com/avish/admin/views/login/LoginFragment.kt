@@ -34,7 +34,10 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launch {
             authViewModel.doLogin().collect { loginState ->
-                Log.d("loginState","${loginState.toString()} ${loginState.data} ${loginState.message}")
+                Log.d(
+                    "loginState",
+                    "${loginState.toString()} ${loginState.data} ${loginState.message}"
+                )
             }
         }
     }

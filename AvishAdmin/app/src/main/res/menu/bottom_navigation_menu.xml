@@ -3,19 +3,19 @@
     <item
         android:id="@id/orderFragment"
         android:icon="@drawable/ic_baseline_file_open_24"
-        android:title="Orders"/>
+        android:title="Orders" />
 
     <item
         android:id="@id/productFragment"
         android:icon="@drawable/ic_baseline_view_list_24"
-        android:title="Products"/>
+        android:title="Products" />
 
     <item
         android:id="@id/userFragment"
         android:icon="@drawable/ic_baseline_supervised_user_circle_24"
-        android:title="Users"/>
+        android:title="Users" />
     <item
         android:id="@id/meFragment"
         android:icon="@drawable/ic_baseline_person_24"
-        android:title="Me"/>
+        android:title="Me" />
 </menu>

@@ -10,6 +10,4 @@ import retrofit2.http.POST
 interface AvishRestApi {
     @POST("auth/login")
     suspend fun doLogin(@Body loginRequestModel: LoginRequestModel): Response<SessionData>
-
-
 }

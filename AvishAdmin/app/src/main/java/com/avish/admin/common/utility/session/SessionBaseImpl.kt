@@ -5,7 +5,7 @@ import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 import com.avish.admin.BuildConfig
 
-abstract class  SessionBaseImpl <T> (context: Context): Session<T> {
+abstract class SessionBaseImpl<T>(context: Context) : Session<T> {
 
     private val keyIsLoggedIn: String = "isLoggedIn"
 
@@ -19,21 +19,21 @@ abstract class  SessionBaseImpl <T> (context: Context): Session<T> {
         EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
     )
 
-    override fun isLoggedIn():Boolean = sharedPreferences.getBoolean(keyIsLoggedIn,false)
+    override fun isLoggedIn(): Boolean = sharedPreferences.getBoolean(keyIsLoggedIn, false)
 
-    override fun logOut(){
+    override fun logOut() {
         sharedPreferences
             .edit()
             .putBoolean(keyIsLoggedIn, false)
             .apply()
     }
 
-    override fun createSession(sessionData:T){
+    override fun createSession(sessionData: T) {
         sharedPreferences
             .edit()
             .putBoolean(keyIsLoggedIn, true)
             .apply()
     }
 
-    abstract override fun getSessionData():T
+    abstract override fun getSessionData(): T
 }

@@ -1,20 +1,17 @@
 package com.avish.admin
 
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import com.avish.admin.common.utility.Resource
-import com.avish.admin.common.utility.session.Session
+import com.avish.admin.common.utility.hide
+import com.avish.admin.common.utility.show
 import com.avish.admin.databinding.ActivityMainBinding
-import com.avish.admin.models.SessionData
 import com.avish.admin.viewModel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -30,7 +27,7 @@ class MainActivity : AppCompatActivity() {
             authViewModel.isUserLoggedIn().collect {
                 when (it) {
                     is Resource.Success -> {
-                        binding.progressBar.visibility = View.GONE
+                        binding.progressBar.hide()
                         val navHostFragment =
                             supportFragmentManager.findFragmentById(R.id.login_nav_host_fragment) as NavHostFragment
                         val navController = navHostFragment.navController
@@ -48,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
                     }
                     is Resource.Loading -> {
-                        binding.progressBar.visibility = View.VISIBLE
+                        binding.progressBar.show()
                     }
                 }
             }

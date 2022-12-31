@@ -7,11 +7,9 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.avish.admin.views.login.LoginFragment"
-        android:label="LOGIN">
-    </fragment>
+        android:label="LOGIN"></fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.avish.admin.views.home.HomeFragment"
-        android:label="Home">
-    </fragment>
+        android:label="Home"></fragment>
 </navigation>

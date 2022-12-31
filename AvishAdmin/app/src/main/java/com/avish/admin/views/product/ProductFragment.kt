@@ -18,10 +18,8 @@ class ProductFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentProductListBinding.inflate(inflater, container, false)
-        //binding.lifecycleOwner = viewLifecycleOwner
-        //binding.splyzaViewModel = splyzaViewModel
-        val view = binding.root
-        return view
+        binding.lifecycleOwner = viewLifecycleOwner
+        return binding.root
     }
 
 
