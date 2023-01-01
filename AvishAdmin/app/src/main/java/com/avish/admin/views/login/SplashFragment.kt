@@ -1,5 +1,4 @@
-package com.avish.admin.views.home
-
+package com.avish.admin.views.login
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,16 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.setupWithNavController
 import com.avish.admin.R
-import com.avish.admin.databinding.FragmentHomeBinding
+import com.avish.admin.databinding.FragmentSplashBinding
 import com.avish.admin.viewModel.AuthViewModel
+import kotlinx.coroutines.launch
 
+class SplashFragment : Fragment() {
 
-class HomeFragment : Fragment() {
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentSplashBinding? = null
     private val binding get() = _binding!!
     private val authViewModel by activityViewModels<AuthViewModel>()
 
@@ -26,29 +24,25 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentSplashBinding.inflate(inflater, container, false)
+        //binding.lifecycleOwner = viewLifecycleOwner
+        //binding.splyzaViewModel = splyzaViewModel
         val view = binding.root
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val host: NavHostFragment = childFragmentManager
-            .findFragmentById(R.id.bottom_nav_host_fragment) as NavHostFragment?
-            ?: return
-        binding.bottomNavigationView.setupWithNavController(host.navController)
-
-        lifecycleScope.launchWhenStarted {
-            authViewModel.uiState.collect {
-                if (!it.isUserLoggedIn) {
-                    findNavController().navigateUp()
-                }
+        authViewModel.getUserLoginStatus()
+        lifecycleScope.launch {
+            val authState = authViewModel.uiState.value
+            if (authState.isUserLoggedIn) {
+                findNavController().navigate(R.id.homeFragment)
+            } else {
+                findNavController().navigate(R.id.loginFragment)
             }
         }
-
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
