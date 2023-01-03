@@ -66,7 +66,6 @@ class AuthViewModel @Inject constructor(private val authUseCase: AuthUseCase) : 
                                 loading = true,
                                 data = null,
                                 error = false,
-                                message = "Loading"
                             )
                         }
                     }
@@ -114,7 +113,7 @@ class AuthViewModel @Inject constructor(private val authUseCase: AuthUseCase) : 
                                 loading = true,
                                 data = null,
                                 error = false,
-                                message = "Loading"
+
                             )
                         }
                     }
@@ -175,7 +174,6 @@ class AuthViewModel @Inject constructor(private val authUseCase: AuthUseCase) : 
                             currentState.copy(
                                 loading = true,
                                 error = false,
-                                message = "Loading"
                             )
                         }
                     }

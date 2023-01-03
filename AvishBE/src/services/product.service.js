@@ -4,12 +4,13 @@ async function insertProductToDb(data) {
 
     const dataToSave = new Product( {
         name: data.name,
-        price: data.price,
-        description: data.description,
+        priceInformation: data.priceInformation,
+        descriptions: data.descriptions,
         images:data.images,
         categories:data.categories,
         size:data.size,
-        color:data.color
+        color:data.color,
+        brand:data.brand,
     })
 
     try {

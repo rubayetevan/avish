@@ -10,15 +10,31 @@ const productSchema = new mongoose.Schema({
     quantity: {
         required: false,
         type: Number,
-        default:0
+        default: 0
     },
-    price: {
-        required: true,
-        type: Number
+    priceInformation: {
+        discountedPrice: {
+            required: false,
+            type: Number,
+            default: 0
+        },
+        price: {
+            required: false,
+            type: Number,
+            default: 0
+        }
     },
-    desc: {
-        required: false,
-        type: String
+    descriptions: {
+        description: {
+            required: false,
+            type: String,
+            default: ""
+        },
+        shortDescription: {
+            required: false,
+            type: String,
+            default: ""
+        }
     },
     isActive: {
         required: false,
@@ -30,8 +46,9 @@ const productSchema = new mongoose.Schema({
         pics: { type: Array },
     },
     brand: {
-        required: true,
-        type: String
+        required: false,
+        type: String,
+        default:""
     },
     categories: { type: Array },
     size: { type: String },

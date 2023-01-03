@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.avish.admin.R
+import com.avish.admin.common.utility.showShortToast
 import com.avish.admin.databinding.FragmentLoginBinding
 import com.avish.admin.viewModel.AuthViewModel
 import kotlinx.coroutines.launch
@@ -40,9 +41,11 @@ class LoginFragment : Fragment() {
                 if (it.isUserLoggedIn) {
                     findNavController().navigate(R.id.homeFragment)
                 }
+                it.message?.let { m ->
+                    requireContext().showShortToast(m)
+                }
             }
         }
-
     }
 
     override fun onDestroyView() {

@@ -15,11 +15,12 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    private const val BASE_URL = "https://avish-be.onrender.com/api/"
+   // private const val BASE_URL = "https://avish-be.onrender.com/api/"
+    private const val BASE_URL = "http://192.168.0.132:3000/api/"
 
     @Singleton
     @Provides
-    fun providesHttpLoggingInterceptor() = HttpLoggingInterceptor()
+    fun s() = HttpLoggingInterceptor()
         .apply {
             level = HttpLoggingInterceptor.Level.BODY
         }
