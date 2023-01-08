@@ -74,53 +74,6 @@ class AuthViewModel @Inject constructor(private val authUseCase: AuthUseCase) : 
         }
     }
 
-    fun getSessionData() {
-        viewModelScope.launch {
-            authUseCase.getSessionData().collect {
-                when (it) {
-                    is Resource.Success -> {
-                        _uiState.update { currentState ->
-                            currentState.copy(
-                                loading = false,
-                                data = it.data,
-                                error = false
-                            )
-                        }
-                    }
-                    is Resource.Error -> {
-                        _uiState.update { currentState ->
-                            currentState.copy(
-                                loading = false,
-                                data = null,
-                                error = true,
-                                message = it.message
-                            )
-                        }
-                    }
-                    is Resource.Empty -> {
-                        _uiState.update { currentState ->
-                            currentState.copy(
-                                loading = false,
-                                data = null,
-                                error = true,
-                                message = it.message ?: "Empty Resource",
-                            )
-                        }
-                    }
-                    is Resource.Loading -> {
-                        _uiState.update { currentState ->
-                            currentState.copy(
-                                loading = true,
-                                data = null,
-                                error = false,
-
-                            )
-                        }
-                    }
-                }
-            }
-        }
-    }
 
     fun getUserLoginStatus() {
         viewModelScope.launch {

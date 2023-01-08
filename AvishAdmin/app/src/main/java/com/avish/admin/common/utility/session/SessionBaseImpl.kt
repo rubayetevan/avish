@@ -34,6 +34,4 @@ abstract class SessionBaseImpl<T>(context: Context) : Session<T> {
             .putBoolean(keyIsLoggedIn, true)
             .apply()
     }
-
-    abstract override fun getSessionData(): T
 }

@@ -8,5 +8,6 @@ data class SessionData(
     @SerializedName("email") var email: String? = null,
     @SerializedName("isAdmin") var isAdmin: Boolean,
     @SerializedName("accessToken") var accessToken: String? = null,
-    @SerializedName("refreshToken") var refreshToken: String? = null
+    @SerializedName("refreshToken") var refreshToken: String? = null,
+    @SerializedName("errorMessage") var errorMessage: String? = null
 )

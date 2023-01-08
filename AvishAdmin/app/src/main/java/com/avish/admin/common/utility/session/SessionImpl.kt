@@ -68,5 +68,16 @@ class SessionImpl @Inject constructor(@ApplicationContext appContext: Context) :
         }
     }
 
+    override fun isAdmin(): Boolean = sharedPreferences.getBoolean(keyAdmin, false)
+
+    override fun getAccessToken(): String = sharedPreferences.getString(keyToken, "") ?: ""
+
+    override fun getUserName(): String = sharedPreferences.getString(keyUsername, "") ?: ""
+
+    override fun getUserId(): String = sharedPreferences.getString(keyId, "") ?: ""
+
+    override fun getRefreshToken(): String = sharedPreferences.getString(keyRefreshToken,
+        "") ?: ""
+
 
 }
