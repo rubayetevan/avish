@@ -9,4 +9,6 @@ interface Session<T> {
     fun createSession(sessionData: T)
 
     fun getSessionData(): T
+
+    fun  updateToken(refreshToken:String,accessToken:String)
 }

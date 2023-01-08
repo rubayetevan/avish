@@ -13,8 +13,10 @@ class SessionImpl @Inject constructor(@ApplicationContext appContext: Context) :
     private val keyEmail = "email"
     private val keyUsername = "userName"
     private val keyToken = "token"
+    private val keyRefreshToken = "rToken"
     private val keyAdmin = "isAdmin"
     private val keyId = "id"
+
 
     override fun createSession(sessionData: SessionData) {
         super.createSession(sessionData)
@@ -24,6 +26,7 @@ class SessionImpl @Inject constructor(@ApplicationContext appContext: Context) :
             putString(keyEmail, sessionData.email)
             putString(keyUsername, sessionData.userName)
             putString(keyToken, sessionData.accessToken)
+            putString(keyRefreshToken, sessionData.refreshToken)
             putBoolean(keyAdmin, sessionData.isAdmin)
             apply()
         }
@@ -51,7 +54,16 @@ class SessionImpl @Inject constructor(@ApplicationContext appContext: Context) :
             putString(keyEmail, "")
             putString(keyUsername, "")
             putString(keyToken, "")
+            putString(keyRefreshToken, "")
             putBoolean(keyAdmin, false)
+            apply()
+        }
+    }
+
+    override fun updateToken(refreshToken: String, accessToken: String) {
+        with(sharedPreferences.edit()) {
+            putString(keyToken, accessToken)
+            putString(keyRefreshToken, refreshToken)
             apply()
         }
     }

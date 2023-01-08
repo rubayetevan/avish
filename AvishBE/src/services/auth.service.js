@@ -21,13 +21,13 @@ async function login(data) {
             isAdmin: user.isAdmin,
             userName: user.userName,
             isActive: user.isActive
-        }, process.env.APP_SECRET, { expiresIn: "3d" })
+        }, process.env.APP_SECRET, { expiresIn: "10s" })
 
         const refreshToken = jwt.sign({
             id: user._id,
             userName: user.userName,
             isActive: user.isActive
-        }, process.env.APP_SECRET, { expiresIn: "30d" })
+        }, process.env.APP_SECRET, { expiresIn: "1m" })
 
         return { ...others, accessToken, refreshToken };
     }
@@ -44,13 +44,13 @@ async function getNewToken(data) {
             isAdmin: user.isAdmin,
             userName: user.userName,
             isActive: user.isActive
-        }, process.env.APP_SECRET, { expiresIn: "3d" })
+        }, process.env.APP_SECRET, { expiresIn: "10s" })
 
         const refreshToken = jwt.sign({
             id: user._id,
             userName: user.userName,
             isActive: user.isActive
-        }, process.env.APP_SECRET, { expiresIn: "30d" })
+        }, process.env.APP_SECRET, { expiresIn: "1m" })
 
         return { accessToken, refreshToken };
     }

@@ -5,6 +5,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -27,10 +28,10 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun providesOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient =
+    fun providesOkHttpClient(authInterceptor: Interceptor): OkHttpClient =
         OkHttpClient
             .Builder()
-            .addInterceptor(httpLoggingInterceptor)
+            .addInterceptor(authInterceptor)
             .build()
 
     @Singleton
