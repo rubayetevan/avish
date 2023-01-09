@@ -7,6 +7,8 @@ import com.avish.admin.common.utility.session.Session
 import com.avish.admin.models.SessionData
 import com.avish.admin.models.TokenRequestModel
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
@@ -19,6 +21,9 @@ class AuthInterceptor @Inject constructor(
     private val dispatcherProvider: DispatcherProvider,
     private val session: Session<SessionData>
 ) : Interceptor {
+
+    private  val mutex = Mutex(true)
+
     override fun intercept(chain: Interceptor.Chain): Response {
 
         val originalRequest = chain.request()
@@ -30,21 +35,23 @@ class AuthInterceptor @Inject constructor(
             Log.d("AuthInterceptor", "response: $originalResponse body: ${originalResponse.body.toString()}")
         }
 
-        if (originalResponse.code != HTTP_UNAUTHORIZED) {
+        if (originalResponse.code != 498) {
             return originalResponse
         }
 
-        val tokenRequestModel = TokenRequestModel(
-            userName = session.getUserName(),
-            refreshToken = session.getRefreshToken()
-        )
 
         val newSession: SessionData? = runBlocking(dispatcherProvider.io) {
-            val newTokenResponse = avishRestApi.get().getNewToken(tokenRequestModel)
-            if (newTokenResponse.isSuccessful)
-                newTokenResponse.body()
-            else
-                null
+            mutex.withLock {
+                val tokenRequestModel = TokenRequestModel(
+                    userName = session.getUserName(),
+                    refreshToken = session.getRefreshToken()
+                )
+                val newTokenResponse = avishRestApi.get().getNewToken(tokenRequestModel)
+                if (newTokenResponse.isSuccessful)
+                    newTokenResponse.body()
+                else
+                    null
+            }
         }
 
         newSession?.let { s ->

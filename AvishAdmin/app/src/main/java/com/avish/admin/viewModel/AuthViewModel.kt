@@ -35,7 +35,7 @@ class AuthViewModel @Inject constructor(private val authUseCase: AuthUseCase) : 
                                 loading = false,
                                 data = it.data,
                                 error = false,
-                                message = "Login Success",
+                                message = null
                             )
                         }
                         getUserLoginStatus()
@@ -66,6 +66,7 @@ class AuthViewModel @Inject constructor(private val authUseCase: AuthUseCase) : 
                                 loading = true,
                                 data = null,
                                 error = false,
+                                message = null
                             )
                         }
                     }
@@ -127,6 +128,7 @@ class AuthViewModel @Inject constructor(private val authUseCase: AuthUseCase) : 
                             currentState.copy(
                                 loading = true,
                                 error = false,
+                                message = null
                             )
                         }
                     }
